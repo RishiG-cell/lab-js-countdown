@@ -9,8 +9,9 @@ const timerElm = document.querySelector("#time");
 const startBtn = document.querySelector("#start-btn");
 const toastMsg = document.querySelector("div#toast");
 const closeMsg = document.querySelector("#close-toast");
+const txtMsg = document.querySelector("#toast-message");
 
-let count = 10;
+let count = 11;
 let intervalId;
 let timeRunning = false;
 
@@ -26,9 +27,13 @@ function startCountdown() {
   intervalId = setInterval(() => {
     count--;
     console.log(count);
-    if (count === 0) {
+    if (count === 10) {
+      showToast("⏰ Final countdown! ⏰");
+    } else if (count === 5) {
+      showToast("Start the engines! 💥");
+    } else if (count === 0) {
       clearInterval(intervalId);
-      showToast();
+      showToast("Lift off! 🚀");
     }
     timerElm.innerText = count;
   }, 1000);
@@ -38,10 +43,11 @@ function startCountdown() {
 // ITERATION 3: Show Toast
 function showToast(message) {
   console.log("showToast called!");
+  txtMsg.innerText = message;
   toastMsg.classList.add("show");
   setTimeout(() => {
     toastMsg.classList.remove("show");
-  }, 10000);
+  }, 3000);
   // Your code goes here ...
 
   // BONUS: ITERATION 4: TOAST CLOSE BUTTON
